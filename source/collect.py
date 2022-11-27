@@ -42,9 +42,9 @@ def taggedDataToCSV(tag, fromDate, toDate):
 
 if __name__ == '__main__':
 
-    #'javascript', 
-            #'java', 'css'
-    tags = ['sql']
+    #'javascript', 'python', 'c#', 'c++', 'c',
+            #'java', 'sql', 'typescript', 'html', 'css'
+    tags = ['typescript']
 
     year = [2012]
 

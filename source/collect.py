@@ -6,7 +6,7 @@ import pandas as pd
 
 def getTaggedData(tag, fromDate, toDate):
     result = []
-
+    tag = 'c%23'
     page = 1
     url = f'https://api.stackexchange.com/2.3/search?page={page}&pagesize=100&fromdate={fromDate}&todate={toDate}&order=desc&sort=activity&tagged={tag}&site=stackoverflow'
 
@@ -42,9 +42,15 @@ def taggedDataToCSV(tag, fromDate, toDate):
 
 if __name__ == '__main__':
 
+<<<<<<< HEAD
     #'javascript', 'python', 'c#', 'c++', 'c',
             #'java', 'sql', 'typescript', 'html', 'css'
     tags = ['javascript']
+=======
+    # 'javascript', 'python', 'c#', 'c++', 'c',
+    #'java', 'sql', 'typescript', 'html', 'css'
+    tags = ['c#']
+>>>>>>> c80a6423759d33acf02965106a026464032dce02
 
     year = [2012]
 

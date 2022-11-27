@@ -41,10 +41,12 @@ def taggedDataToCSV(tag, fromDate, toDate):
 
 
 if __name__ == '__main__':
-    tags = ['javascript', 'python', 'c#', 'c++', 'c',
-            'java', 'sql', 'typescript', 'html', 'css']
 
-    year = [2019, 2020, 2021, 2022]
+    #'javascript', 'python', 'c#', 'c++', 'c',
+            #'java', 'sql', 'typescript', 'html', 'css'
+    tags = ['typescript']
+
+    year = [2012]
 
     month = {
         1: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],

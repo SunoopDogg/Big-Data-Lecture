@@ -1,0 +1,80 @@
+import pandas as pd
+import nltk
+from nltk.tokenize import RegexpTokenizer
+from collections import Counter
+
+
+def getTaggedDataFromCSV(tag, YM):
+    data = pd.read_csv(f'{tag}\{tag}_data_{YM}.csv', index_col=0)
+    return data
+
+
+def getTitleFromCSV(tag, YM):
+    data = getTaggedDataFromCSV(tag, YM)
+    title = data['title']
+    return title.tolist()
+
+
+def getTaggedFromTitle(title):
+    title = [t.replace('_', ' ') for t in title]
+    tokenizer = RegexpTokenizer(r'\w+')
+    tokens = []
+    for t in title:
+        tokens.extend(tokenizer.tokenize(t))
+    tokens = [t.lower() for t in tokens]
+    tagged = nltk.pos_tag(tokens)
+    return tagged
+
+
+def getNNPFromTagged(tagged):
+    NNP = []
+    for t in tagged:
+        if t[1] == 'NNP' or t[1] == 'NNPS' or t[1] == 'NN':
+            NNP.append(t[0])
+    return NNP
+
+
+def collectionToCSV(tag, YM, collections):
+    df = pd.DataFrame(collections, columns=['word', 'count'])
+    df.to_csv(f'{tag}\{tag}_collections_{YM}.csv')
+
+
+if __name__ == '__main__':
+    # tags = ['javascript', 'python', 'c#', 'c++', 'c',
+    #         'java', 'sql', 'typescript', 'html', 'css']
+    tags = ['python']
+
+    month = {
+        # 1: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        # 2: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+        # 3: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        4: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        5: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        6: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        7: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        8: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        9: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        10: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+        11: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        12: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    }
+
+    year = {
+        # 2019: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
+        # 2020: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
+        # 2021: [1,  2,  3,  4,  5,  6,  7,  8,  9,
+        # 2021: [10, 11, 12],
+        # 2022: [1,  2,  3,
+        2022: [4,  5,  6,  7,  8,  9, 10],
+    }
+
+    for tag in tags:
+        for y in year:
+            for m in year[y]:
+                YM = f'{y}-{m:02}'
+                print(f'{tag} {YM}')
+                title = getTitleFromCSV(tag, YM)
+                tagged = getTaggedFromTitle(title)
+                NNP = getNNPFromTagged(tagged)
+                collections = Counter(NNP).most_common()
+                collectionToCSV(tag, YM, collections)

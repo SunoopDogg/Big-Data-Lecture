@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     #'javascript', 'python', 'c#', 'c++', 'c',
             #'java', 'sql', 'typescript', 'html', 'css'
-    tags = ['java']
+    tags = ['sql']
 
     year = [2012]
 

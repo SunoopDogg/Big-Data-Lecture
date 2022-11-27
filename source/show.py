@@ -12,30 +12,24 @@ def cleanData(data):
     data = data[data['word'].str.len() > 1]
     data = data[data['word'] != tag]
 
-    cleanTarget = ['error', 'js', 'type']
+    cleanTarget = ['error', 'js', 'type', 'function', 'file', 'list', 'code', 'value', 'class', 'array', 'column', 'model', 'struct', 'string', 'number', 'char', 'input', 'output', 'loop',
+                   'fault', 'method', 'div', 'element', 'button', 'page', 'color', 'form', 'exception', 'object', 'project', 'component', 'table', 'date', 'row', 'join', 'group', 'property', 'ts']
     data = data[~data['word'].isin(cleanTarget)]
 
     return data
 
 
 if __name__ == '__main__':
-    # tags = ['javascript', 'python', 'c#', 'c++', 'c',
-    #         'java', 'sql', 'typescript', 'html', 'css']
-    tags = ['c']
+    tags = ['c', 'c++', 'c#', 'java', 'javascript',
+            'python', 'typescript', 'css', 'html', 'sql']
 
     year = {
-<<<<<<< HEAD
-        # 2012: [10, 11, 12],
-        2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        
-=======
         # 2009: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
->>>>>>> c80a6423759d33acf02965106a026464032dce02
+        # 2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         # 2019: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         # 2020: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         # 2021: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        # 2022: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10],
+        2022: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10],
     }
 
     # for tag in tags:

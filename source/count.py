@@ -40,12 +40,10 @@ def collectionToCSV(tag, YM, collections):
 
 
 if __name__ == '__main__':
-    # tags = ['javascript', 'python', 'c#', 'c++', 'c',
-    #         'java', 'sql', 'typescript', 'html', 'css']
-    tags = ['c']
+    tags = ['typescript']
 
     year = {
-        2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12]
+        2012: [10, 11, 12]
         # 2019: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         # 2020: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         # 2021: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],

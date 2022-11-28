@@ -7,7 +7,7 @@ def getCollectionFromCSV(tag, YM):
     return data
 
 
-def cleanData(data):
+def cleanData(data, tag):
     data = data[data['word'].str.len() > 1]
     data = data[data['word'] != tag]
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
                 YM = f'{y}-{m:02}'
                 print(f'{tag} {YM}')
                 data = getCollectionFromCSV(tag, YM)
-                data = cleanData(data)
+                data = cleanData(data, tag)
                 dataMerge = pd.concat([dataMerge, data], axis=0)
 
             dataMerge = dataMerge.groupby('word').sum().sort_values(

@@ -69,5 +69,6 @@ if __name__ == '__main__':
                 toDate = int(time.mktime(datetime.datetime(
                     y, m, month[m][-1], 23, 59).timetuple()))
                 print(f'Getting data for {tag} from {fromDate} to {toDate}')
+
                 taggedDataToCSV(tag, fromDate, toDate)
                 time.sleep(1)

@@ -8,7 +8,6 @@ def getCollectionFromCSV(tag, YM):
 
 
 def cleanData(data):
-    # data = data[data['count'] > 10]
     data = data[data['word'].str.len() > 1]
     data = data[data['word'] != tag]
 

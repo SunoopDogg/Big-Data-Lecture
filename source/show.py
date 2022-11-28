@@ -12,8 +12,14 @@ def cleanData(data):
     data = data[data['word'].str.len() > 1]
     data = data[data['word'] != tag]
 
-    cleanTarget = ['error', 'js', 'type', 'function', 'file', 'list', 'code', 'value', 'class', 'array', 'column', 'model', 'struct', 'string', 'number', 'char', 'input', 'output', 'loop',
-                   'fault', 'method', 'div', 'element', 'button', 'page', 'color', 'form', 'exception', 'object', 'project', 'component', 'table', 'date', 'row', 'join', 'group', 'property', 'ts']
+    cleanTarget = ['error', 'js', 'type', 'function', 'file',
+                   'list', 'code', 'value', 'class', 'array',
+                   'column', 'model', 'struct', 'string', 'number',
+                   'char', 'input', 'output', 'loop', 'fault',
+                   'method', 'div', 'element', 'button', 'page',
+                   'color', 'form', 'exception', 'object', 'project',
+                   'component', 'table', 'date', 'row', 'join',
+                   'group', 'property', 'ts', 'way']
     data = data[~data['word'].isin(cleanTarget)]
 
     return data

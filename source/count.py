@@ -10,7 +10,7 @@ def getTaggedDataFromCSV(tag, YM):
 
 
 def getTitleFromCSV(tag, YM):
-    data = getTaggedDataFromCSV(tag, YM)
+    data = pd.read_csv(f'{tag}\{tag}_data_{YM}.csv', index_col=0)
     title = data['title']
     return title.tolist()
 
@@ -18,10 +18,12 @@ def getTitleFromCSV(tag, YM):
 def getTaggedFromTitle(title):
     title = [t.replace('_', ' ') for t in title]
     tokenizer = RegexpTokenizer(r'\w+')
+
     tokens = []
     for t in title:
         tokens.extend(tokenizer.tokenize(t))
     tokens = [t.lower() for t in tokens]
+
     tagged = nltk.pos_tag(tokens)
     return tagged
 
@@ -40,24 +42,13 @@ def collectionToCSV(tag, YM, collections):
 
 
 if __name__ == '__main__':
-    # tags = ['javascript', 'python', 'c#', 'c++', 'c',
-    #         'java', 'sql', 'typescript', 'html', 'css']
-    tags = ['c']
+    tags = ['c', 'c++', 'c#', 'java', 'javascript',
+            'python', 'sql', 'typescript', 'html', 'css']
 
     year = {
-<<<<<<< HEAD
-        2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12]
-        # 2012: [10, 11, 12]
-=======
-        # 2009: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
->>>>>>> c80a6423759d33acf02965106a026464032dce02
-        # 2019: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        # 2020: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        # 2021: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
-        # 2022: [1,  2,  3, 4,  5,  6,  7,  8,  9, 10],
+        2022: [1,  2,  3, 4,  5,  6,  7,  8,  9, 10],
     }
-
 
     for tag in tags:
         for y in year:

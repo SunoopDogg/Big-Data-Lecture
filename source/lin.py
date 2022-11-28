@@ -7,13 +7,18 @@ def getCollectionFromCSV(tag, YM):
     return data
 
 
-def cleanData(data):
-    # data = data[data['count'] > 10]
+def cleanData(data, tag):
     data = data[data['word'].str.len() > 1]
     data = data[data['word'] != tag]
 
-    cleanTarget = ['error', 'js', 'type', 'function', 'file', 'list', 'code', 'value', 'class', 'array', 'column', 'model', 'struct', 'string', 'number', 'char', 'input', 'output', 'loop',
-                   'fault', 'method', 'div', 'element', 'button', 'page', 'color', 'form', 'exception', 'object', 'project', 'component', 'table', 'date', 'row', 'join', 'group', 'property', 'ts']
+    cleanTarget = ['error', 'js', 'type', 'function', 'file',
+                   'list', 'code', 'value', 'class', 'array',
+                   'column', 'model', 'struct', 'string', 'number',
+                   'char', 'input', 'output', 'loop', 'fault',
+                   'method', 'div', 'element', 'button', 'page',
+                   'color', 'form', 'exception', 'object', 'project',
+                   'component', 'table', 'date', 'row', 'join',
+                   'group', 'property', 'ts', 'way']
     data = data[~data['word'].isin(cleanTarget)]
 
     return data
@@ -35,7 +40,7 @@ if __name__ == '__main__':
                 YM = f'{y}-{m:02}'
                 print(f'{tag} {YM}')
                 data = getCollectionFromCSV(tag, YM)
-                data = cleanData(data)
+                data = cleanData(data, tag)
                 dataMerge = pd.concat([dataMerge, data], axis=0)
 
             dataMerge = dataMerge.groupby('word').sum().sort_values(
@@ -52,28 +57,3 @@ if __name__ == '__main__':
 
             plt.savefig(f'{tag}\{tag}_pie_{y}.png',
                         bbox_inches='tight', pad_inches=0.5)
-
-            plt.clf()
-
-    # for tag in tags:
-    #     for y in year:
-    #         for m in year[y]:
-    #             YM = f'{y}-{m:02}'
-    #             print(f'{tag} {YM}')
-    #             data = getCollectionFromCSV(tag, YM)
-    #             data = cleanData(data)
-    #             cnt = data['count'].sum()
-    #             data = data.head(5)
-    #             # data.loc['0'] = ['other', cnt - data['count'].sum()]
-
-    #             explode = [0.05, 0.05, 0.05, 0.05, 0.05]
-    #             colors = ['#41a4ff', '#ff914d', '#7ed957',
-    #                       '#FFACAC', '#B7A1FF']  # , '#d0d0d0'
-
-    #             plt.pie(data['count'], labels=data['word'],
-    #                     autopct='%.1f%%', startangle=90, counterclock=False, explode=explode, colors=colors)
-
-    #             plt.savefig(f'{tag}\{tag}_pie_{YM}.png',
-    #                         bbox_inches='tight', pad_inches=0.5)
-
-    #             plt.clf()

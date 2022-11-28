@@ -18,10 +18,12 @@ def getTitleFromCSV(tag, YM):
 def getTaggedFromTitle(title):
     title = [t.replace('_', ' ') for t in title]
     tokenizer = RegexpTokenizer(r'\w+')
+
     tokens = []
     for t in title:
         tokens.extend(tokenizer.tokenize(t))
     tokens = [t.lower() for t in tokens]
+
     tagged = nltk.pos_tag(tokens)
     return tagged
 

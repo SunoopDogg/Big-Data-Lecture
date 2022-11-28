@@ -32,29 +32,6 @@ if __name__ == '__main__':
         2022: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10],
     }
 
-    # for tag in tags:
-    #     for y in year:
-    #         for m in year[y]:
-    #             YM = f'{y}-{m:02}'
-    #             print(f'{tag} {YM}')
-    #             data = getCollectionFromCSV(tag, YM)
-    #             data = cleanData(data)
-    #             cnt = data['count'].sum()
-    #             data = data.head(5)
-    #             # data.loc['0'] = ['other', cnt - data['count'].sum()]
-
-    #             explode = [0.05, 0.05, 0.05, 0.05, 0.05]
-    #             colors = ['#41a4ff', '#ff914d', '#7ed957',
-    #                       '#FFACAC', '#B7A1FF']  # , '#d0d0d0'
-
-    #             plt.pie(data['count'], labels=data['word'],
-    #                     autopct='%.1f%%', startangle=90, counterclock=False, explode=explode, colors=colors)
-
-    #             plt.savefig(f'{tag}\{tag}_pie_{YM}.png',
-    #                         bbox_inches='tight', pad_inches=0.5)
-
-    #             plt.clf()
-
     for tag in tags:
         for y in year:
             dataMerge = pd.DataFrame()
@@ -81,3 +58,26 @@ if __name__ == '__main__':
                         bbox_inches='tight', pad_inches=0.5)
 
             plt.clf()
+
+    # for tag in tags:
+    #     for y in year:
+    #         for m in year[y]:
+    #             YM = f'{y}-{m:02}'
+    #             print(f'{tag} {YM}')
+    #             data = getCollectionFromCSV(tag, YM)
+    #             data = cleanData(data)
+    #             cnt = data['count'].sum()
+    #             data = data.head(5)
+    #             # data.loc['0'] = ['other', cnt - data['count'].sum()]
+
+    #             explode = [0.05, 0.05, 0.05, 0.05, 0.05]
+    #             colors = ['#41a4ff', '#ff914d', '#7ed957',
+    #                       '#FFACAC', '#B7A1FF']  # , '#d0d0d0'
+
+    #             plt.pie(data['count'], labels=data['word'],
+    #                     autopct='%.1f%%', startangle=90, counterclock=False, explode=explode, colors=colors)
+
+    #             plt.savefig(f'{tag}\{tag}_pie_{YM}.png',
+    #                         bbox_inches='tight', pad_inches=0.5)
+
+    #             plt.clf()

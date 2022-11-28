@@ -10,7 +10,7 @@ def getTaggedDataFromCSV(tag, YM):
 
 
 def getTitleFromCSV(tag, YM):
-    data = getTaggedDataFromCSV(tag, YM)
+    data = pd.read_csv(f'{tag}\{tag}_data_{YM}.csv', index_col=0)
     title = data['title']
     return title.tolist()
 

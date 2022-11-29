@@ -8,17 +8,19 @@ def getMergeFromCSV(tag, YM):
 
 
 if __name__ == '__main__':
-    tags = ['c', 'c++', 'c#', 'java', 'javascript',
-            'python', 'typescript', 'css', 'html', 'sql']
+    # tags = ['c', 'c++', 'c#', 'java', 'javascript',
+    #         'python', 'typescript', 'css', 'html', 'sql']
+
+    tags = ['python']
 
     year = {
-        2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
+        # 2012: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12],
         2022: [1,  2,  3,  4,  5,  6,  7,  8,  9, 10],
     }
 
     for tag in tags:
         for y in year:
-            data = getMergeFromCSV(tag, y)
+            data = getMergeFromCSV(tag, y).head(5)
 
             explode = [0.05, 0.05, 0.05, 0.05, 0.05]
             colors = ['#41a4ff', '#ff914d', '#7ed957', '#FFACAC', '#B7A1FF']
